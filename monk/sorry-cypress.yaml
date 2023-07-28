@@ -35,6 +35,10 @@ dashboard:
     website: https://github.com/vmwarecloudadvocacy/acme_fitness_demo
     publisher: nooga
     icon: https://visualpharm.com/assets/690/Clear%20Shopping%20Cart-595b40b65ba036ed117d19bf.svg
+  connections:
+    api:
+      runnable: sorry-cypress/api
+      service: api
   containers:
     app:
       image: agoldis/sorry-cypress-dashboard:latest
@@ -61,8 +65,6 @@ api:
   containers:
     app:
       image: agoldis/sorry-cypress-api:latest
-      ports:
-      - 4000:4000
   variables:
     graphql-schema-url:
       env: GRAPHQL_SCHEMA_URL
@@ -80,6 +82,11 @@ api:
       env: APOLLO_PLAYGROUND
       type: string
       value: true
+  services:
+    api:
+      container: app
+      port: 4000
+      protocol: tcp
 
 director:
   defines: runnable
