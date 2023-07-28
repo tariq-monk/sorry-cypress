@@ -140,3 +140,9 @@ director:
       env: MONGODB_DATABASE
       type: string
       value: sorry-cypress
+  services:
+    director:
+      container: app
+      port: 1234
+      protocol: tcp
+      host-port: 1234
