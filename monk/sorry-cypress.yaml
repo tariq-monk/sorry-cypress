@@ -11,8 +11,6 @@ mongo:
   containers:
     db:
       image: mongo:4.4
-      ports:
-      - 27017:27017
   variables:
     mongo-initdb-database:
       env: MONGO_INITDB_ROOT_USERNAME
@@ -26,6 +24,12 @@ mongo:
       env: MONGO_INITDB_ROOT_PASSWORD
       type: string
       value: mongo
+    services:
+      mongo:
+        container: app
+        port: 27017
+        protocol: tcp
+        host-port: 27017
 
 dashboard:
   defines: runnable
@@ -39,6 +43,9 @@ dashboard:
     api:
       runnable: sorry-cypress/api
       service: api
+    mongo:
+      runnable: sorry-cypress/mongo
+      service: mongo
   containers:
     app:
       image: agoldis/sorry-cypress-dashboard:latest
@@ -46,7 +53,7 @@ dashboard:
     graphql-schema-url:
       env: GRAPHQL_SCHEMA_URL
       type: string
-      value: http://<graphql-ip-address>:4000
+      value: <- "http://" connection("api") concat-all
     graphql-client-credentials:
       env: GRAPHQL_CLIENT_CREDENTIALS
       type: string
@@ -69,6 +76,10 @@ api:
   containers:
     app:
       image: agoldis/sorry-cypress-api:latest
+  connections:
+    mongo:
+    runnable: sorry-cypress/mongo
+    service: mongo
   variables:
     graphql-schema-url:
       env: GRAPHQL_SCHEMA_URL
@@ -101,6 +112,10 @@ director:
     website: https://github.com/vmwarecloudadvocacy/acme_fitness_demo
     publisher: nooga
     icon: https://visualpharm.com/assets/690/Clear%20Shopping%20Cart-595b40b65ba036ed117d19bf.svg
+  connections:
+    mongo:
+    runnable: sorry-cypress/mongo
+    service: mongo
   containers:
     app:
       image: agoldis/sorry-cypress-director:latest
