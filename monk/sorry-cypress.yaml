@@ -42,8 +42,6 @@ dashboard:
   containers:
     app:
       image: agoldis/sorry-cypress-dashboard:latest
-      ports:
-      - 8080:8080
   variables:
     graphql-schema-url:
       env: GRAPHQL_SCHEMA_URL
@@ -53,6 +51,11 @@ dashboard:
       env: GRAPHQL_CLIENT_CREDENTIALS
       type: string
       value: test
+  services:
+    dashboard:
+      container: app
+      port: 8080
+      protocol: tcp
 
 api:
   defines: runnable
