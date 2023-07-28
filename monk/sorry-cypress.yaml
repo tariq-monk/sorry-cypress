@@ -1,0 +1,115 @@
+namespace: sorry-cypress
+
+mongo:
+  defines: runnable
+  metadata:
+    name: Mongo DB
+    description: Part of ACME Fitness cloud demo.
+    website: https://github.com/vmwarecloudadvocacy/acme_fitness_demo
+    publisher: nooga
+    icon: https://visualpharm.com/assets/690/Clear%20Shopping%20Cart-595b40b65ba036ed117d19bf.svg
+  containers:
+    db:
+      image: mongo:4.4
+      ports:
+      - 27017:27017
+  variables:
+    mongo-initdb-database:
+      env: MONGO_INITDB_ROOT_USERNAME
+      type: string
+      value: sorry-cypress
+    mongo-initdb-root-password:
+      env: MONGO_INITDB_ROOT_USERNAME
+      type: string
+      value: mongo
+    mongo-initdb-root-username:
+      env: MONGO_INITDB_ROOT_PASSWORD
+      type: string
+      value: mongo
+
+dashboard:
+  defines: runnable
+  metadata:
+    name: Sorry Cypress Dashboard
+    description: Part of ACME Fitness cloud demo.
+    website: https://github.com/vmwarecloudadvocacy/acme_fitness_demo
+    publisher: nooga
+    icon: https://visualpharm.com/assets/690/Clear%20Shopping%20Cart-595b40b65ba036ed117d19bf.svg
+  containers:
+    app:
+      image: agoldis/sorry-cypress-dashboard:latest
+      ports:
+      - 8080:8080
+  variables:
+    graphql-schema-url:
+      env: GRAPHQL_SCHEMA_URL
+      type: string
+      value: http://<graphql-ip-address>:4000
+    graphql-client-credentials:
+      env: GRAPHQL_CLIENT_CREDENTIALS
+      type: string
+      value: test
+
+api:
+  defines: runnable
+  metadata:
+    name: Sorry Cypress API
+    description: Part of ACME Fitness cloud demo.
+    website: https://github.com/vmwarecloudadvocacy/acme_fitness_demo
+    publisher: nooga
+    icon: https://visualpharm.com/assets/690/Clear%20Shopping%20Cart-595b40b65ba036ed117d19bf.svg
+  containers:
+    app:
+      image: agoldis/sorry-cypress-api:latest
+      ports:
+      - 4000:4000
+  variables:
+    graphql-schema-url:
+      env: GRAPHQL_SCHEMA_URL
+      type: string
+      value: http://<graphql-ip-address>:4000
+    mongo-uri: 
+      env: MONGO_URI
+      type: string
+      value: mongodb://mongo:mongo@mongo:27017
+    mongo-database: 
+      env: MONGODB_DATABASE
+      type: string
+      value: sorry-cypress
+    apollo: 
+      env: APOLLO_PLAYGROUND
+      type: string
+      value: true
+
+director:
+  defines: runnable
+  metadata:
+    name: Sorry Cypress director
+    description: Part of ACME Fitness cloud demo.
+    website: https://github.com/vmwarecloudadvocacy/acme_fitness_demo
+    publisher: nooga
+    icon: https://visualpharm.com/assets/690/Clear%20Shopping%20Cart-595b40b65ba036ed117d19bf.svg
+  containers:
+    app:
+      image: agoldis/sorry-cypress-director:latest
+      ports:
+      - 1234:1234
+      - 9000:9000
+      - 9090:9090
+  variables:
+    dashboard-url:
+      env: DASHBOARD_URL
+      type: string
+      value: http://localhost:8080
+    execution-driver:
+      env: EXECUTION_DRIVER
+      type: string
+      value: ../execution/mongo/driver
+    mongo-uri:
+      env: MONGODB_URI
+      type: string
+      value: mongodb://<mongo-user>:<mongo-pass>@mongo:27017
+    mongo-database:
+      env: MONGODB_DATABASE
+      type: string
+      value: sorry-cypress
