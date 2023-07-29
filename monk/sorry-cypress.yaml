@@ -135,7 +135,7 @@ director:
     mongo-uri:
       env: MONGODB_URI
       type: string
-      value: mongodb://mongo:mongo@mongo:27017
+      value: <- "http://" connection("mongo") concat-all
     mongo-database:
       env: MONGODB_DATABASE
       type: string
