@@ -43,7 +43,7 @@ services:
   api:
     image: agoldis/sorry-cypress-api:latest
     environment:
-      MONGODB_URI: 'mongodb://<mongo-user>:<mongo-pass>@mongo:27017'
+      MONGODB_URI: 'mongodb://mongo:mongo@34.34.39.124:27017??directConnection=true'
       MONGODB_DATABASE: 'sorry-cypress'
       APOLLO_PLAYGROUND: 'false'
     ports:
