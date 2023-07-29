@@ -84,7 +84,7 @@ api:
     graphql-schema-url:
       env: GRAPHQL_SCHEMA_URL
       type: string
-      value: http://<graphql-ip-address>:4000
+      value: <- "http://" connection("api") concat-all
     mongo-uri: 
       env: MONGO_URI
       type: string
