@@ -26,7 +26,6 @@ mongo:
       value: mongo
   services:
     mongo:
-      container: app
       port: 27017
       protocol: tcp
       host-port: 27017
