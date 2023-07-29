@@ -11,19 +11,6 @@ mongo:
   containers:
     db:
       image: mongo:4.4
-  variables:
-    mongo-initdb-database:
-      env: MONGO_INITDB_ROOT_USERNAME
-      type: string
-      value: sorry-cypress
-    mongo-initdb-root-password:
-      env: MONGO_INITDB_ROOT_USERNAME
-      type: string
-      value: mongo
-    mongo-initdb-root-username:
-      env: MONGO_INITDB_ROOT_PASSWORD
-      type: string
-      value: mongo
   services:
     mongo:
       container: db
