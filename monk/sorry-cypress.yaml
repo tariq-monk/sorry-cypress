@@ -114,8 +114,8 @@ director:
     icon: https://visualpharm.com/assets/690/Clear%20Shopping%20Cart-595b40b65ba036ed117d19bf.svg
   connections:
     mongo:
-    runnable: sorry-cypress/mongo
-    service: mongo
+      runnable: sorry-cypress/mongo
+      service: mongo
   containers:
     app:
       image: agoldis/sorry-cypress-director:latest
