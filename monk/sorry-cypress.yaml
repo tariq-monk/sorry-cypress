@@ -26,7 +26,7 @@ mongo:
       value: mongo
   services:
     mongo:
-      container: mongodb
+      container: db
       port: 27017
       protocol: tcp
       host-port: 27017
