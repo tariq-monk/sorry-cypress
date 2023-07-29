@@ -85,10 +85,6 @@ api:
       runnable: sorry-cypress/mongo
       service: mongo
   variables:
-    graphql-schema-url:
-      env: GRAPHQL_SCHEMA_URL
-      type: string
-      value: <- "http://" connection("api") concat-all
     mongo-uri: 
       env: MONGO_URI
       type: string
