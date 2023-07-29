@@ -24,12 +24,12 @@ mongo:
       env: MONGO_INITDB_ROOT_PASSWORD
       type: string
       value: mongo
-    services:
-      mongo:
-        container: app
-        port: 27017
-        protocol: tcp
-        host-port: 27017
+  services:
+    mongo:
+      container: app
+      port: 27017
+      protocol: tcp
+      host-port: 27017
 
 dashboard:
   defines: runnable
