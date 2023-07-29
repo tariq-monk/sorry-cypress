@@ -57,7 +57,7 @@ dashboard:
     graphql-client-credentials:
       env: GRAPHQL_CLIENT_CREDENTIALS
       type: string
-      value: test
+      value: ''
     port:
       env: PORT
       type: string
