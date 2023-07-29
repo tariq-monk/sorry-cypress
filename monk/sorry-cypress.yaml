@@ -86,7 +86,7 @@ api:
       service: mongo
   variables:
     mongo-uri: 
-      env: MONGO_URI
+      env: MONGODB_URI
       type: string
       value: <- "http://" connection("mongo") concat-all
     mongo-database: 
