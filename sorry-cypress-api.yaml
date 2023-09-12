@@ -1,0 +1,57 @@
+namespace: sorry-cypress-api
+sorry-cypress-api:
+  defines: runnable
+  metadata:
+    name: sorry-cypress-api
+    description: >-
+      This is the API microservice of the sorry-cypress application. It provides
+      GraphQL API to other parts of the application.
+    icon: https://emojiapi.dev/api/v1/robot.svg
+  containers:
+    sorry-cypress-api:
+      build: .
+  services:
+    api-port:
+      container: sorry-cypress-api
+      port: <- $port
+      host-port: <- $port
+      publish: false
+      protocol: TCP
+      description: >-
+        This port is exposed for the API server to send and receive HTTP
+        requests.
+  connections:
+    mongodb:
+      target: mongodb/mongodb
+      service: mongodb
+  variables:
+    host:
+      env: HOST
+      type: string
+      description: The host on which the API server should run.
+      value: localhost
+    port:
+      env: PORT
+      type: string
+      description: The port on which the API server should listen.
+      value: '4000'
+    base-path:
+      env: BASE_PATH
+      type: string
+      description: The base URL path for the API server.
+      value: '!!!SETME!!!'
+    apollo-playground:
+      env: APOLLO_PLAYGROUND
+      type: string
+      description: A flag to enable or disable the Apollo GraphQL playground.
+      value: 'true'
+    page-items-limit:
+      env: PAGE_ITEMS_LIMIT
+      type: string
+      description: Items displayed per page.
+      value: '20'
+    ci-build-batch-size:
+      env: CI_BUILD_BATCH_SIZE
+      type: string
+      description: Size of the CI Build batch.
+      value: '1000'

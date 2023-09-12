@@ -1,2 +1,2 @@
-REPO sorry-cypress
-LOAD monk/sorry-cypress.yaml
+REPO sorry-cypress-api
+LOAD sorry-cypress-api.yaml
